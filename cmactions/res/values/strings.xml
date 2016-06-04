@@ -16,12 +16,28 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+<!-- Doze -->
+    <string name="ambient_display_title">Ambient display</string>
+    <string name="ambient_display_enable_title">Ambient display</string>
+    <string name="ambient_display_enable_summary">Wake screen when you receive notifications</string>
+    <string name="hand_wave_gesture_title">Hand wave</string>
+    <string name="hand_wave_gesture_summary">Pulse notifications on hand wave</string>
+    <string name="pick_up_gesture_title">Pick-up</string>
+    <string name="pick_up_gesture_summary">Pulse notifications on pick-up</string>
+    <string name="pocket_gesture_title">Pocket</string>
+    <string name="pocket_gesture_summary">Pulse notifications on removal from pocket</string>
+    <string name="proximity_wake_enable_title">Proximity wake</string>
+    <string name="proximity_wake_enable_summary">Wake device on hand wave</string>
+    <string name="touchscreen_gesture_haptic_feedback">Haptic Feedback</string>
+    <string name="touchscreen_gesture_haptic_feedback_summary">Enable haptic feedback to confirm gesture input</string>
+
     <!-- Gesture shortcuts -->
     <string name="screen_gestures_panel_title">Gesture shortcuts</string>
     <string name="screen_gestures_panel_summary">Use gestures while the screen is off</string>
 
     <string name="touchscreen_control_gesture_title">Enable Gestures</string>
     <string name="gesture_category_title">Available Gestures</string>
+    <string name="touchscreen_gesture_title">Drawing</string>
     <string name="touchscreen_c_gesture_title">Camera</string>
     <string name="touchscreen_c_gesture_summary">Draw a \"C\" to activate Camera</string>
     <string name="touchscreen_e_gesture_title">Email</string>
