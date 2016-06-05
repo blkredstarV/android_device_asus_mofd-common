@@ -20,8 +20,8 @@ TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
-KERNEL_TOOLCHAIN_PREFIX := x86_64-linux-android-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linaro-gcc-5.3.1/bin
+KERNEL_TOOLCHAIN_PREFIX := x86_64-linux-
 TARGET_BOARD_PLATFORM := moorefield
 TARGET_BOOTLOADER_BOARD_NAME := moorefield
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -120,7 +120,7 @@ TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
 TARGET_KERNEL_ARCH := x86_64
 BOARD_KERNEL_IMAGE_NAME := bzImage
-TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
+TARGET_KERNEL_CONFIG := BlkStar_defconfig
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 snd_pcm.maximum_substreams=8 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\"
