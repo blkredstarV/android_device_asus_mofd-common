@@ -20,16 +20,18 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.provider.Settings;
-
-import org.cyanogenmod.internal.util.ScreenType;
+import com.android.internal.util.cm.ScreenType;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
+	
+    public static final String CATEGORY_GESTURES = "category_gestures";
+    public static PreferenceCategory gestureCat;
 
     private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_GESTURE_HAND_WAVE = "gesture_hand_wave";
@@ -65,23 +67,13 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
 
-        final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
+         gestureCat = (PreferenceCategory) findPreference(CATEGORY_GESTURES);
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
-
-        // If running on a phone, remove padding around the listview
-        if (!ScreenType.isTablet(this)) {
-            getListView().setPadding(0, 0, 0, 0);
-        }
+        
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -141,11 +133,23 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
             final String key = preference.getKey();
             if (KEY_HAPTIC_FEEDBACK.equals(key)) {
                 final boolean value = (Boolean) newValue;
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
+                Settings.System.putInt(getContentResolver(), KEY_HAPTIC_FEEDBACK, value ? 1 : 0);
                 return true;
             }
             return false;
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // If running on a phone, remove padding around the listview
+        if (!ScreenType.isTablet(this)) {
+            getListView().setPadding(0, 0, 0, 0);
+        }
+
+        mHapticFeedback.setChecked(
+                Settings.System.getInt(getContentResolver(), KEY_HAPTIC_FEEDBACK, 1) != 0);
+    }
 }

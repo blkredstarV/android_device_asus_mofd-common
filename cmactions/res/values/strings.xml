@@ -28,9 +28,9 @@
     <string name="pocket_gesture_summary">Pulse notifications on removal from pocket</string>
     <string name="proximity_wake_enable_title">Proximity wake</string>
     <string name="proximity_wake_enable_summary">Wake device on hand wave</string>
-    <string name="touchscreen_gesture_haptic_feedback">Haptic Feedback</string>
-    <string name="touchscreen_gesture_haptic_feedback_summary">Enable haptic feedback to confirm gesture input</string>
-
+    <string name="key_haptic_feedback">Haptic Feedback</string>
+    <string name="key_haptic_feedback_summary">Enable haptic feedback to confirm gesture input</string>
+    
     <!-- Gesture shortcuts -->
     <string name="screen_gestures_panel_title">Gesture shortcuts</string>
     <string name="screen_gestures_panel_summary">Use gestures while the screen is off</string>
