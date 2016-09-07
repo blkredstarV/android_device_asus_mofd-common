@@ -18,20 +18,19 @@ package com.cyanogenmod.settings.device;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.SwitchPreference;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v14.preference.PreferenceFragment;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceCategory;
 import android.provider.Settings;
 import android.view.ViewGroup;
 
 import com.android.internal.util.cm.ScreenType;
 
-public class TouchscreenGestureSettings extends PreferenceActivity {
+public class TouchscreenGestureFragment extends PreferenceFragment {
 	
-    public static final String CATEGORY_GESTURES = "category_gestures";
-    public static PreferenceCategory gestureCat;
-
     private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_GESTURE_HAND_WAVE = "gesture_hand_wave";
     private static final String KEY_GESTURE_PICK_UP = "gesture_pick_up";
@@ -47,8 +46,7 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     private SwitchPreference mProximityWakePreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.touchscreen_panel);
         boolean dozeEnabled = isDozeEnabled();
         mAmbientDisplayPreference = (SwitchPreference) findPreference(KEY_AMBIENT_DISPLAY_ENABLE);
@@ -70,19 +68,17 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         if (gestureCat != null) {
             gestureCat.setEnabled(CMActionsSettings.areGesturesEnabled());
         }
-
-        ((ViewGroup)getListView().getParent()).setPadding(0, 0, 0, 0);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-        mHapticFeedback.setChecked(CMSettings.System.getInt(getContentResolver(),
+        mHapticFeedback.setChecked(CMSettings.System.getInt(getContext().getContentResolver(),
                 CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
     }
 
     private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(getContentResolver(),
+        return Settings.Secure.getInt(getContext().getContentResolver(),
                 Settings.Secure.DOZE_ENABLED, 1) != 0;
     }
 
@@ -121,13 +117,10 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            final String key = preference.getKey();
-            if (KEY_HAPTIC_FEEDBACK.equals(key)) {
-                final boolean value = (Boolean) newValue;
-                Settings.System.putInt(getContentResolver(), KEY_HAPTIC_FEEDBACK, value ? 1 : 0);
-                return true;
-            }
-            return false;
+            final boolean value = (Boolean) newValue;
+            CMSettings.System.putInt(getContext().getContentResolver(),
+                    CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
+            return true;
         }
     };
 
@@ -135,9 +128,10 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     protected void onResume() {
         super.onResume();
 
-        // If running on a phone, remove padding around the listview
-        if (!ScreenType.isTablet(this)) {
-            getListView().setPadding(0, 0, 0, 0);
+    private final Runnable mUpdateGestures = new Runnable() {
+        @Override
+        public void run() {
+            CMActionsSettings.updateGestureMode(getContext());
         }
 
         mHapticFeedback.setChecked(

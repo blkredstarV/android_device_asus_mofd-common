@@ -20,8 +20,7 @@
         android:label="CMActions"
         android:persistent="true"
         android:icon="@mipmap/ic_launcher_settings"
-        android:theme="@android:style/Theme.Material.Settings" >
-
+        android:theme="@style/CMActions" >
         <receiver android:name="com.cyanogenmod.settings.device.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -55,8 +54,8 @@
         </service>
 
         <activity
-            android:name=".TouchscreenGestureSettings"
-            android:label="@string/screen_gestures_panel_title">
+            android:name=".TouchscreenGestureActivity"
+            android:label="@*cyanogenmod.platform:string/screen_gestures_panel_title">
             <intent-filter>
                 <action android:name="com.cyanogenmod.action.LAUNCH_TOUCHSCREEN_GESTURE_SETTINGS" />
             </intent-filter>
