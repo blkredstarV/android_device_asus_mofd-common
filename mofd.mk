@@ -104,9 +104,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += ro.dalvik.vm.native.bridge=libhoudini.so
 
 # Keyhandler
+<<<<<<< HEAD
 #PRODUCT_PACKAGES += \
 #    CMActions \
 #    com.cyanogenmod.keyhandler
+=======
+PRODUCT_PACKAGES += \
+    com.cyanogenmod.keyhandler
+>>>>>>> a05d91d... mofd: remove cmactions, moving to common interface
 
 # Key layout files
 PRODUCT_COPY_FILES += \
