@@ -62,14 +62,11 @@ PRODUCT_PACKAGES += \
     bspcapability \
     camera.mofd_v1 \
     libshim_camera \
-    SnapdragonCamera
 
 # Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
-
-ADDITIONAL_DEFAULT_PROPERTIES += ro.sys.powerctl.no.shutdown=1
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -177,7 +174,6 @@ PRODUCT_PACKAGES += \
     libOMXVideoDecoderVP8 \
     libOMXVideoDecoderMPEG2 \
     libOMXVideoDecoderVP9HWR \
-    libOMXVideoDecoderVP9Hybrid \
     libOMXVideoEncoderAVC \
     libOMXVideoEncoderH263 \
     libOMXVideoEncoderMPEG4 \
@@ -299,8 +295,6 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 # specific management of sep_policy.conf
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/sep_policy.conf:system/etc/security/sep_policy.conf
-    
-
 
 # hardware optimizations
 #PRODUCT_PROPERTY_OVERRIDES += \
