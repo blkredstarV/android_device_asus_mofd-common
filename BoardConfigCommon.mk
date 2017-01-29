@@ -76,6 +76,9 @@ endif
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/mofd-common/cmhw
 
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.moorefield
+
 # Houdini: enable ARM codegen for x86
 BUILD_ARM_FOR_X86 := true
 
@@ -122,7 +125,7 @@ TARGET_INIT_UMOUNT_AND_FSCK_IS_UNSAFE := true
 TARGET_KERNEL_SOURCE := kernel/asus/moorefield
 TARGET_KERNEL_ARCH := x86_64
 BOARD_KERNEL_IMAGE_NAME := bzImage
-TARGET_KERNEL_CONFIG := cyanogenmod_zenfone2_defconfig
+TARGET_KERNEL_CONFIG := zenfone2_defconfig
 
 # Kernel cmdline
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 loglevel=0 vmalloc=256M androidboot.hardware=mofd_v1 watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789 gpt snd_pcm.maximum_substreams=8 ptrace.ptrace_can_access=1 panic=15 ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on debug_locks=0 n_gsm.mux_base_conf=\"ttyACM0,0 ttyXMM0,1\" bootboost=1'
@@ -191,9 +194,6 @@ BUILD_WITH_CHAABI_SUPPORT := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/asus/mofd-common/sepolicy
-
-# Sensors
-BOARD_GLOBAL_CFLAGS += -DCOMPAT_SENSORS_M
 
 # Tap-to-Wake
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:09.2/i2c-7/7-0038/ftsdclickmode"
