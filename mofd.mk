@@ -235,6 +235,10 @@ ENABLE_ITUXD := true
 PRODUCT_PACKAGES += \
     ituxd
 
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
 # IMG graphics
 PRODUCT_PACKAGES += \
     hwcomposer.moorefield
