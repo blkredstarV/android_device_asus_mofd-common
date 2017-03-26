@@ -80,6 +80,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/asus/mofd-common/powervr.ini:system/etc/powervr.ini
 
+# Doze
+PRODUCT_PACKAGES += \
+	Doze
+
 # Factory reset protection
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.frp.pst=/dev/block/by-name/persistent
