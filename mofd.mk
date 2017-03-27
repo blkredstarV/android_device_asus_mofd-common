@@ -68,6 +68,10 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
+# Cyanogen
+PRODUCT_PACKAGES += \
+	cyanogen
+
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.dalvik.vm.isa.arm=x86 \

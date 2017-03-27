@@ -13,6 +13,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Label for feature switch [CHAR LIMIT=30] -->
+  <!-- Label for feature switch [CHAR LIMIT=30] -->
   <string name="ambient_display_title">תצוגת התראות עמומה</string>
   <string name="ambient_display_summary">הפעל את המסך כשמתקבלות התראות</string>
   <string name="always_enabled_title">אפשר תמיד</string>

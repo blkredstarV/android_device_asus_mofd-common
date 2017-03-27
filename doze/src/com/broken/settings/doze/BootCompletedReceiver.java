@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 The SlimRoms Project
+ * Copyright (c) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.slimroms.doze.zte;
+package com.broken.settings.doze;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -28,8 +28,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if (DEBUG) Log.d(TAG, "Starting service");
-        context.startService(new Intent(context, DozeService.class));
+        if (Utils.isDozeEnabled(context) && Utils.sensorsEnabled(context)) {
+            if (DEBUG) Log.d(TAG, "Starting service");
+            Utils.startService(context);
+        }
     }
 
 }
